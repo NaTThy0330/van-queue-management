@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -22,6 +23,10 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan(config.nodeEnv === 'production' ? 'combined' : 'dev'));
+const uploadAbsolutePath = path.isAbsolute(config.uploadDir)
+  ? config.uploadDir
+  : path.join(process.cwd(), config.uploadDir);
+app.use('/uploads', express.static(uploadAbsolutePath));
 
 app.get('/', (req, res) => {
   res.json({

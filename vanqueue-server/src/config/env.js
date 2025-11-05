@@ -12,6 +12,8 @@ const envSchema = Joi.object({
   CORS_ORIGINS: Joi.string().default('*'),
   ADMIN_DEFAULT_EMAIL: Joi.string().email().required(),
   ADMIN_DEFAULT_PASSWORD: Joi.string().min(8).required(),
+  UPLOAD_DIR: Joi.string().default('./uploads'),
+  FCM_SERVICE_ACCOUNT: Joi.string().optional().allow(''),
 }).unknown();
 
 const { value: envVars, error } = envSchema.validate(process.env, { abortEarly: false });
@@ -37,4 +39,6 @@ module.exports = {
   corsOrigins: parseCorsOrigins(envVars.CORS_ORIGINS),
   adminDefaultEmail: envVars.ADMIN_DEFAULT_EMAIL,
   adminDefaultPassword: envVars.ADMIN_DEFAULT_PASSWORD,
+  uploadDir: envVars.UPLOAD_DIR,
+  firebaseServiceAccount: envVars.FCM_SERVICE_ACCOUNT,
 };

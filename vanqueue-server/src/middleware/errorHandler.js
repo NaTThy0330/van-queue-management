@@ -2,10 +2,17 @@ const logger = require('../utils/logger');
 
 // Central error handler keeps consistent response shape.
 module.exports = (err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
+  let statusCode = err.statusCode || 500;
+  let message = err.message || 'Internal server error';
+
+  if (err.name === 'MulterError') {
+    statusCode = 400;
+    message = err.message;
+  }
+
   const payload = {
     success: false,
-    message: err.message || 'Internal server error',
+    message,
   };
 
   if (err.details) {

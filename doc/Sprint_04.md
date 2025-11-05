@@ -1,0 +1,3 @@
+🏁 Sprint 4 — UI
+| **VANQ-07** | Receive Notifications          | 1️⃣ Setup FCM service worker on frontend <br>2️⃣ Implement backend push trigger (FCM SDK) <br>3️⃣ Test events: payment verified, 15-min reminder, departure <br>4️⃣ Verify notification UI & browser permission                                                                                                  |
+| **VANQ-08** | View Lost & Found              | 1️⃣ Create Lost & Found page (React) <br>2️⃣ Implement `/lostfound` endpoint (GET) <br>3️⃣ Display list of items with driver info <br>4️⃣ Test data retrieval from DB                                                                                                                                            |
